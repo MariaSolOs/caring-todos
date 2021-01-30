@@ -5,6 +5,11 @@ const { gql } = require('apollo-server-express');
         todos(userId: ID!): [Todo]
     }
 
+    type Mutation {
+        createTodo(title: String!, description: String, category: String): Todo!
+        updateTodo(todoID: ID!): Todo!
+    }
+
     type Todo {
         _id: ID!
         title: String!
