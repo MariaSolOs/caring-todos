@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-
-// Add import to CSS here
+import './Titles.css'
+import './Boxes.css'
+import './Buttons.css'
+import './Tabs.css'
 
 function App() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [email, setEmail] = useState('');
+    const [value, handleChange] = useState('');
 
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -16,46 +20,75 @@ function App() {
 
     return (
         <div className="App">
-            <div>
-                <h3>Create a new todo</h3>
+          <div className="MainBox">
+            <h1 className="MainTitle">Work/Life Balance Inducing To-Do List</h1>
+            <div className="Box">
+                <h3 className="SubTitle">Create a New Task</h3>
                 <form onSubmit={handleTodoSubmit}>
-                    <label htmlFor="todoTitle">Title</label>
-                    <input 
+                    <label htmlFor="todoTitle" className="Paragraph">Title: </label>
+                    <input className="TextBox"
                     id="todoTitle"
                     type="text" 
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}/>
-                    <label htmlFor="todoDescription">
-                        Description
+                    <label htmlFor="todoDescription" className="Paragraph">
+                        Description: 
                     </label>
-                    <input 
+                    <input className="TextBox"
                     id="todoDescription"
                     type="text" 
                     name="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}/>
-                    <select 
+                    <select className="TextBox"
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
                         <option value="WORK">Work</option>
                         <option value="SCHOOL">School</option>
-                        <option value="FAM-FRIENDS">Family and friends</option>
+                        <option value="FAM-FRIENDS">Family and Friends</option>
                         <option value="SELF-CARE">Self-care</option>
                     </select>
-                    <button type="submit">
-                        Create todo
+                    <button type="submit" className="Button">
+                        Submit
                     </button>
                 </form>
             </div>
-            <div>
-                <h3>My todos</h3>
-                <ul>
-                    <li>
-                    </li>
-                </ul>
+            <div className="Box">
+                <h3 className="SubTitle">My To-Do List</h3>
+                <div className="tab">
+                  <button className="tablinks" >Work</button>
+                  <button className="tablinks" >School</button>
+                  <button className="tablinks" >Family and Friends</button>
+                  <button className="tablinks" >Self-care</button>
+                </div>
+                <div id="London" className="tabcontent">
+                  <h3>London</h3>
+                  <p>London is the capital city of England.</p>
+                </div>
+
+                <div id="Paris" className="tabcontent">
+                  <h3>Paris</h3>
+                  <p>Paris is the capital of France.</p> 
+                </div>
+
+                <div id="Tokyo" className="tabcontent">
+                  <h3>Tokyo</h3>
+                  <p>Tokyo is the capital of Japan.</p>
+                </div>
+                </div>
+            <div className="Box">
+                <label className="SubTitle">Email</label>
+                <input className="TextBox"
+                    id="email"
+                    type="text" 
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}/>
+                <button className="Button">Subscribe</button>
             </div>
+        </div>
         </div>
   );
 }

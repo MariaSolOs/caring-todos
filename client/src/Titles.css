@@ -1,0 +1,20 @@
+.MainTitle{
+    font-size: 25px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.SubTitle{
+    font-size: 13px;
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.Paragraph{
+    font-size: 12px;
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 1%;
+}
