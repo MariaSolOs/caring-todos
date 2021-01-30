@@ -22,6 +22,7 @@ const Login = (props: Props) => {
     return (
         <div className="App">
             <form className="MainBox" onSubmit={handleLogin}>
+                <h1 className="MainTitle">Dashboard</h1>
                 <div className="Box">
                     <label className="SubTitle">Email</label>
                     <input className="TextBox"

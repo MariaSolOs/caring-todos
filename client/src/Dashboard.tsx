@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/Titles.css'
 import './styles/Boxes.css'
 import './styles/Buttons.css'
@@ -17,10 +17,29 @@ const Dashboard = () => {
         // Maria sends todo info to server
     }
 
+    const randomFactor = Math.random();
+    const randomIndex = Math.floor(1643*randomFactor);
+
+    const [quote, setQuote] = useState('')
+    const [author, setAuthor] = useState('')
+
+    useEffect(() => {
+      fetch("https://type.fit/api/quotes")
+      .then(function(response) {
+        return response.json();
+      })
+      .then((data) => {
+        setQuote(data[randomIndex].text)
+        setAuthor(data[randomIndex].author)
+      })
+
+    }, []);
+    
     return (
         <div className="App">
           <div className="MainBox">
-            <h1 className="MainTitle">Dashboard</h1>
+
+            <h1 className="MainTitle">"{quote}" by {author}</h1>
 
             <div className="flex-container">
             <div className="flex-child magenta">
@@ -90,9 +109,6 @@ const Dashboard = () => {
                   </div>
                   <div className="SubBox">
                     <h3 className="SubTitle"> Calendar </h3>
-                  </div>
-                  <div className="SubBox">
-                    <h3 className="SubTitle"> Message </h3>
                   </div>
                 </div>
                 </div>
