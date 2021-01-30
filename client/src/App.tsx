@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './Titles.css'
 import './Boxes.css'
 import './Buttons.css'
+import './Tabs.css'
 
 function App() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [email, setEmail] = useState('');
+    const [value, handleChange] = useState('');
 
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -55,12 +57,27 @@ function App() {
             </div>
             <div className="Box">
                 <h3 className="SubTitle">My To-Do List</h3>
-                <ul className="Paragraph">
-                  <li>
-                    test
-                  </li>
-                </ul>
-            </div>
+                <div className="tab">
+                  <button className="tablinks" >Work</button>
+                  <button className="tablinks" >School</button>
+                  <button className="tablinks" >Family and Friends</button>
+                  <button className="tablinks" >Self-care</button>
+                </div>
+                <div id="London" className="tabcontent">
+                  <h3>London</h3>
+                  <p>London is the capital city of England.</p>
+                </div>
+
+                <div id="Paris" className="tabcontent">
+                  <h3>Paris</h3>
+                  <p>Paris is the capital of France.</p> 
+                </div>
+
+                <div id="Tokyo" className="tabcontent">
+                  <h3>Tokyo</h3>
+                  <p>Tokyo is the capital of Japan.</p>
+                </div>
+                </div>
             <div className="Box">
                 <label className="SubTitle">Email</label>
                 <input className="TextBox"
