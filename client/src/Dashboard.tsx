@@ -21,9 +21,16 @@ const CREATE_TODO = gql`
 
 type Props = {
     email: string;
-    todos: Todo[];
+    allTodos: Todo[];
     onAddTodo: (todo: Todo) => void;
 }
+
+const todoCategories = [
+    { value: 'WORK', displayText: 'Work' },
+    { value: 'SCHOOL', displayText: 'School' },
+    { value: 'FAM-FRIENDS', displayText: 'Family and Friends' },
+    { value: 'SELF-CARE', displayText: 'Self-care' }
+];
 
 const Dashboard = (props: Props) => {
     // Fields for creating todo
@@ -44,7 +51,8 @@ const Dashboard = (props: Props) => {
         });
     }
 
-    console.log(props.todos)
+    // To filter the todo list
+    const [tab, setTab] = useState('WORK');
 
     return (
         <div className="App">
@@ -73,10 +81,13 @@ const Dashboard = (props: Props) => {
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
-                        <option value="WORK">Work</option>
-                        <option value="SCHOOL">School</option>
-                        <option value="FAM-FRIENDS">Family and Friends</option>
-                        <option value="SELF-CARE">Self-care</option>
+                        {todoCategories.map(({ value, displayText }) => (
+                            <option 
+                            key={value} 
+                            value={value}>
+                                {displayText}
+                            </option>
+                        ))}
                     </select>
                     <button type="submit" className="Button">
                         Submit
@@ -86,16 +97,22 @@ const Dashboard = (props: Props) => {
             <div className="TabBox">
                 <h3 className="SubTitle">My To-Do List</h3>
                 <div className="tab">
-                  <button className="tablinks" >Work</button>
-                  <button className="tablinks" >School</button>
-                  <button className="tablinks" >Family and Friends</button>
-                  <button className="tablinks" >Self-care</button>
+                    {todoCategories.map(({ value, displayText }) => (
+                        <button 
+                        key={value} 
+                        className="tablinks"
+                        onClick={() => setTab(value)}>
+                            {displayText}
+                        </button>
+                    ))}
                 </div>
                 <div className="TaskBox">
-                    {props.todos.map((todo) => (
+                    {props.allTodos.filter(({ category }) => category === tab).map((todo) => (
                         <div key={todo._id} className="Task">
                             <input type="checkbox"/>
-                            <span className="Paragraph">{todo.title} - {todo.description}</span>
+                            <span className="Paragraph">
+                                {todo.title}: {todo.description}
+                            </span>
                         </div>
                     ))}
                   {/* <div className="Task">

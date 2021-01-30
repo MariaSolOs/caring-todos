@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/dashboard">
                 <Dashboard 
                 email={email}
-                todos={todos}
+                allTodos={todos}
                 onAddTodo={handleAddTodo}/>
             </Route>
             <Route path="/">
