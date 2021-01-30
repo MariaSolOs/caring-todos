@@ -97,6 +97,8 @@ const Dashboard = (props: Props) => {
     // To filter the todo list
     const [tab, setTab] = useState('WORK');
 
+    var recipeIndex = Math.floor(Math.random()*5);
+
     return (
         <div className="app-container">
             <div className="calendar">
@@ -177,6 +179,16 @@ const Dashboard = (props: Props) => {
                             </span>
                         </div>
                     ))}
+                </div>
+            </div>
+            <div className="RecipeBox">
+                <h3 className="SubTitle"> Try a new recipe! </h3>
+                <div>
+                    <h2 className="RecipeTitle">Insert recipe title here</h2>
+                    <h4 className="SmallTitle">Ingredients: </h4>
+                    <p className="Paragraph">insert ingredients here probably as list</p>
+                    <h4 className="SmallTitle">Steps: </h4>
+                    <p className="Paragraph">insert steps here probably as list</p>
                 </div>
             </div>
         </div>
