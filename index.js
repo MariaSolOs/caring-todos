@@ -20,12 +20,6 @@ app.use(cors({
 const server = new ApolloServer({ 
     typeDefs,
     // resolvers,
-    // context: ({ req }) => {
-    //     const token = req.headers && (req.headers.authorization || '');
-    //     const user = getUser(token);
-    //     logger(req, user);
-    //     return { user };
-    // },
     // dataSources: () => ({
     //     instructorAPI: new Instructors(mongoClient.db().collection('instructors')),
     //     appointmentAPI: new Appointments(mongoClient.db().collection('appointments')),
