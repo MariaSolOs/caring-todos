@@ -6,6 +6,23 @@
     border-radius: 5px;
     padding: 1%;
     width: 90%;
+    height: 400pt;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    vertical-align: center;
+    align-self: center;
+}
+
+.RecipeBox{
+    margin: auto;
+    margin-bottom: 10pt;
+    background-color: #27ece327;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1%;
+    width: 90%;
+    height: 250pt;
     align-items: center;
     align-content: center;
     text-align: center;
