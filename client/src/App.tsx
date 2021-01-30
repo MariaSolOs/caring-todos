@@ -68,7 +68,7 @@ function App() {
                     type="text" 
                     name="email"
                     value={email}
-                    onChange={(e) => setDescription(e.target.value)}/>
+                    onChange={(e) => setEmail(e.target.value)}/>
                 <button className="Button">Subscribe</button>
             </div>
         </div>
