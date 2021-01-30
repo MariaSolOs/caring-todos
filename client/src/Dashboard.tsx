@@ -25,10 +25,23 @@ const CREATE_TODO = gql`
     }
 `;
 
+const TOGGLE_TODO = gql`
+    mutation ToggleTodo($todoId: ID!, $completed: Boolean!) {
+        toggleTodo(todoId: $todoId, completed: $completed) {
+            _id
+            title
+            description
+            category
+            completed
+        }
+    }
+`;
+
 type Props = {
     email: string;
     allTodos: Todo[];
     onAddTodo: (todo: Todo) => void;
+    onTodoToggle: (todo: Todo) => void;
 }
 
 const todoCategories = [
@@ -42,12 +55,12 @@ const randomFactor = Math.random();
 const randomIndex = Math.floor(1643*randomFactor);
 
 const Dashboard = (props: Props) => {
-    // Fields for creating todo
+    // Fields for creating a todo
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('WORK');
 
-    const [createTodo, _] = useMutation(CREATE_TODO, {
+    const [createTodo] = useMutation(CREATE_TODO, {
         onCompleted: ({ createTodo }) => {
             props.onAddTodo(createTodo);
         }
@@ -60,9 +73,16 @@ const Dashboard = (props: Props) => {
         });
     }
 
+    // Toggle a todo
+    const [toggleTodo] = useMutation(TOGGLE_TODO, {
+        onCompleted: ({ toggleTodo }) => {
+            props.onTodoToggle(toggleTodo);
+        }
+    });
+
+    // Fetch random quote
     const [quote, setQuote] = useState('')
     const [author, setAuthor] = useState('')
-
     useEffect(() => {
       fetch("https://type.fit/api/quotes")
       .then(function(response) {
@@ -70,9 +90,8 @@ const Dashboard = (props: Props) => {
       })
       .then((data) => {
         setQuote(data[randomIndex].text)
-        setAuthor(data[randomIndex].author)
+        setAuthor(data[randomIndex].author || 'Anonymous')
       })
-
     }, []);
   
     // To filter the todo list
@@ -144,20 +163,20 @@ const Dashboard = (props: Props) => {
                 <div className="TaskBox">
                     {props.allTodos.filter(({ category }) => category === tab).map((todo) => (
                         <div key={todo._id} className="Task">
-                            <input type="checkbox"/>
+                            <input 
+                            type="checkbox" 
+                            checked={todo.completed}
+                            onChange={(e) => toggleTodo({
+                                variables: { 
+                                    todoId: todo._id, 
+                                    completed: e.target.checked 
+                                }
+                            })}/>
                             <span className="Paragraph">
                                 {todo.title}: {todo.description}
                             </span>
                         </div>
                     ))}
-                  {/* <div className="Task">
-                    <input type="checkbox" id="task1" name="task1" value="Task 1"></input>
-                    <label htmlFor="task1" className="Paragraph"> Task 1</label>
-                  </div>
-                  <div className="Task">
-                    <input type="checkbox" id="task2" name="task2" value="Task 2"></input>
-                    <label htmlFor="task2" className="Paragraph"> Task 2</label>
-                  </div> */}
                 </div>
             </div>
         </div>

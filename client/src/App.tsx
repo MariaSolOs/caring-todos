@@ -14,6 +14,10 @@ const App = () => {
     const handleAddTodo = (newTodo: Todo) => {
         setTodos((todos) => [...todos, newTodo]);
     } 
+    const handleTodoToggle = (toggledTodo: Todo) => {
+        const filteredTodos = todos.filter(({ _id }) => _id !== toggledTodo._id);
+        setTodos([...filteredTodos, toggledTodo]);
+    }
 
     return (
         <Switch>
@@ -21,7 +25,8 @@ const App = () => {
                 <Dashboard 
                 email={email}
                 allTodos={todos}
-                onAddTodo={handleAddTodo}/>
+                onAddTodo={handleAddTodo}
+                onTodoToggle={handleTodoToggle}/>
             </Route>
             <Route path="/">
                 <Login 
