@@ -10,6 +10,7 @@ const App = () => {
 
     const handleLogin = (email: string) => {
         setEmail(email);
+        // Maria logs user here
     }
 
     return (

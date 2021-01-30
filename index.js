@@ -3,9 +3,9 @@ require('dotenv').config({ path: './.env' });
 // Server setup
 const { ApolloServer } = require('apollo-server-express'),
        typeDefs = require('./schema'),
-    //    resolvers = require('./resolvers'),
+       resolvers = require('./resolvers'),
        mongoClient = require('./config/mongoDB'),
-    //   { Instructors, Students, Appointments } = require('./datasources'),
+      { Users, Todos } = require('./datasources'),
        express = require('express'),
        path = require('path'),
        cors = require('cors');
@@ -19,12 +19,11 @@ app.use(cors({
 
 const server = new ApolloServer({ 
     typeDefs,
-    // resolvers,
-    // dataSources: () => ({
-    //     instructorAPI: new Instructors(mongoClient.db().collection('instructors')),
-    //     appointmentAPI: new Appointments(mongoClient.db().collection('appointments')),
-    //     studentAPI: new Students(mongoClient.db().collection('students'))
-    // })
+    resolvers,
+    dataSources: () => ({
+        userAPI: new Users(mongoClient.db().collection('users')),
+        todosAPI: new Todos(mongoClient.db().collection('todos')),
+    })
 });
 server.applyMiddleware({ app, path: '/server' });
 
