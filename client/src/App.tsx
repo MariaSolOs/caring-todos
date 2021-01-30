@@ -12,11 +12,11 @@ const App = () => {
     // Todo list management
     const [todos, setTodos] = useState<Todo[]>([]);
     const handleAddTodo = (newTodo: Todo) => {
-        setTodos((todos) => [...todos, newTodo]);
+        setTodos((todos) => [...todos, newTodo].sort((t1, t2) => +t1._id - +t2._id));
     } 
     const handleTodoToggle = (toggledTodo: Todo) => {
         const filteredTodos = todos.filter(({ _id }) => _id !== toggledTodo._id);
-        setTodos([...filteredTodos, toggledTodo]);
+        setTodos([...filteredTodos, toggledTodo].sort((t1, t2) => +t1._id - +t2._id));
     }
 
     return (

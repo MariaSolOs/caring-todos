@@ -27,9 +27,9 @@ const server = new ApolloServer({
 });
 server.applyMiddleware({ app, path: '/server' });
 
-// app.get('*', (_, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-// });
+app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 app.listen({ port: process.env.PORT || 4000 }, () => {
     console.log(`Server ready at ${server.graphqlPath}`);
