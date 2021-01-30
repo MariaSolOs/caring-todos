@@ -4,6 +4,8 @@
     border: 1px solid black;
     background-color: #d9f196c2;
     margin: auto;
+    width: fit-content;
+    margin-bottom: 5px;
   }
   
   /* Style the buttons that are used to open the tab content */

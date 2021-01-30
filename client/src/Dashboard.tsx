@@ -9,7 +9,6 @@ const Dashboard = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [value, handleChange] = useState('');
 
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -55,7 +54,7 @@ const Dashboard = () => {
                     </button>
                 </form>
             </div>
-            <div className="Box">
+            <div className="TabBox">
                 <h3 className="SubTitle">My To-Do List</h3>
                 <div className="tab">
                   <button className="tablinks" >Work</button>
@@ -63,19 +62,15 @@ const Dashboard = () => {
                   <button className="tablinks" >Family and Friends</button>
                   <button className="tablinks" >Self-care</button>
                 </div>
-                <div id="London" className="tabcontent">
-                  <h3>London</h3>
-                  <p>London is the capital city of England.</p>
-                </div>
-
-                <div id="Paris" className="tabcontent">
-                  <h3>Paris</h3>
-                  <p>Paris is the capital of France.</p> 
-                </div>
-
-                <div id="Tokyo" className="tabcontent">
-                  <h3>Tokyo</h3>
-                  <p>Tokyo is the capital of Japan.</p>
+                <div className="TaskBox">
+                  <div className="Task">
+                    <input type="checkbox" id="task1" name="task1" value="Task 1"></input>
+                    <label htmlFor="task1" className="Paragraph"> Task 1</label>
+                  </div>
+                  <div className="Task">
+                    <input type="checkbox" id="task2" name="task2" value="Task 2"></input>
+                    <label htmlFor="task2" className="Paragraph"> Task 2</label>
+                  </div>
                 </div>
                 </div>
         </div>

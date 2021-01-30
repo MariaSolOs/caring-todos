@@ -16,12 +16,11 @@
 .TabBox{
     margin: auto;
     margin-bottom: 10pt;
-    background-color: #d9f196c2;
+    background-color: #27ece327;
     border: 2px solid black;
     border-radius: 5px;
     padding: 1%;
     width: 60%;
-    align-items: center;
     align-content: center;
     text-align: center;
     vertical-align: center;
@@ -32,4 +31,20 @@
     margin: auto;
     border: none;
     padding: 5%;
+}
+
+
+.TaskBox{
+    margin: auto;
+    border: 2px solid black;
+    padding: 1%;
+    border-radius: 5px;
+    background-color: #27ece327;
+    text-align: left;
+    width: 250pt;
+}
+
+.Task{
+    padding: 2%;
+    margin-top: 0pt;
 }
