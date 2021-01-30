@@ -36,7 +36,7 @@ const Dashboard = (props: Props) => {
     // Fields for creating todo
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('WORK');
 
     const [createTodo, _] = useMutation(CREATE_TODO, {
         onCompleted: ({ createTodo }) => {
