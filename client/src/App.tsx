@@ -7,6 +7,7 @@ function App() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ function App() {
                 <h3 className="SubTitle">Create a New Task</h3>
                 <form onSubmit={handleTodoSubmit}>
                     <label htmlFor="todoTitle" className="Paragraph">Title: </label>
-                    <input className="Paragraph"
+                    <input className="TextBox"
                     id="todoTitle"
                     type="text" 
                     name="title"
@@ -32,13 +33,13 @@ function App() {
                     <label htmlFor="todoDescription" className="Paragraph">
                         Description: 
                     </label>
-                    <input className="Paragraph"
+                    <input className="TextBox"
                     id="todoDescription"
                     type="text" 
                     name="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}/>
-                    <select className="Paragraph"
+                    <select className="TextBox"
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
@@ -47,7 +48,7 @@ function App() {
                         <option value="FAM-FRIENDS">Family and Friends</option>
                         <option value="SELF-CARE">Self-care</option>
                     </select>
-                    <button type="submit" className="SubmitButton">
+                    <button type="submit" className="Button">
                         Submit
                     </button>
                 </form>
@@ -59,6 +60,16 @@ function App() {
                     test
                   </li>
                 </ul>
+            </div>
+            <div className="Box">
+                <label className="SubTitle">Email</label>
+                <input className="TextBox"
+                    id="email"
+                    type="text" 
+                    name="email"
+                    value={email}
+                    onChange={(e) => setDescription(e.target.value)}/>
+                <button className="Button">Subscribe</button>
             </div>
         </div>
         </div>

@@ -1,4 +1,4 @@
-.SubmitButton{
+.Button{
     background-color: #d9f196c2; 
     color: black;
     text-align: center;
@@ -10,6 +10,15 @@
     border-radius: 5px black;
 }
 
-.SubmitButton:hover{
+.Button:hover{
     background-color: #bfe656;
+}
+
+.TextBox{
+    font-size: 12px;
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 1%;
+    margin-left: 5pt;
+    margin-right: 5pt;
 }
