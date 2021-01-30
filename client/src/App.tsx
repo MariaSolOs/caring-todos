@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
-// Add import to CSS here
+import './Titles.css'
+import './Boxes.css'
+import './Buttons.css'
 
 function App() {
     const [title, setTitle] = useState('');
@@ -16,46 +17,50 @@ function App() {
 
     return (
         <div className="App">
-            <div>
-                <h3>Create a new todo</h3>
+          <div className="MainBox">
+            <h1 className="MainTitle">Work/Life Balance Inducing To-Do List</h1>
+            <div className="Box">
+                <h3 className="SubTitle">Create a New Task</h3>
                 <form onSubmit={handleTodoSubmit}>
-                    <label htmlFor="todoTitle">Title</label>
-                    <input 
+                    <label htmlFor="todoTitle" className="Paragraph">Title: </label>
+                    <input className="Paragraph"
                     id="todoTitle"
                     type="text" 
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}/>
-                    <label htmlFor="todoDescription">
-                        Description
+                    <label htmlFor="todoDescription" className="Paragraph">
+                        Description: 
                     </label>
-                    <input 
+                    <input className="Paragraph"
                     id="todoDescription"
                     type="text" 
                     name="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}/>
-                    <select 
+                    <select className="Paragraph"
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
                         <option value="work">Work</option>
                         <option value="school">School</option>
-                        <option value="fam-friends">Family and friends</option>
+                        <option value="fam-friends">Family and Friends</option>
                         <option value="self-care">Self-care</option>
                     </select>
-                    <button type="submit">
-                        Create todo
+                    <button type="submit" className="SubmitButton">
+                        Submit
                     </button>
                 </form>
             </div>
-            <div>
-                <h3>My todos</h3>
-                <ul>
-                    <li>
-                    </li>
+            <div className="Box">
+                <h3 className="SubTitle">My To-Do List</h3>
+                <ul className="Paragraph">
+                  <li>
+                    test
+                  </li>
                 </ul>
             </div>
+        </div>
         </div>
   );
 }

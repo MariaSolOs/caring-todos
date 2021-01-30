@@ -1,0 +1,15 @@
+.SubmitButton{
+    background-color: #d9f196c2; 
+    color: black;
+    text-align: center;
+
+    font-size: 12px;
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    border-radius: 5px black;
+}
+
+.SubmitButton:hover{
+    background-color: #bfe656;
+}
