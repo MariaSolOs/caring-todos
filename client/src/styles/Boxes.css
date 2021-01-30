@@ -5,7 +5,22 @@
     border: 2px solid black;
     border-radius: 5px;
     padding: 1%;
-    width: 60%;
+    width: 90%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    vertical-align: center;
+    align-self: center;
+}
+
+.SubBox{
+    margin: auto;
+    margin-bottom: 10pt;
+    background-color: #27ece327;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1%;
+    width: 80%;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -48,3 +63,17 @@
     padding: 2%;
     margin-top: 0pt;
 }
+
+
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 

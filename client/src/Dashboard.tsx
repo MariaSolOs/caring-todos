@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Todo } from './models'; 
 
@@ -51,13 +51,35 @@ const Dashboard = (props: Props) => {
         });
     }
 
+    const randomFactor = Math.random();
+    const randomIndex = Math.floor(1643*randomFactor);
+
+    const [quote, setQuote] = useState('')
+    const [author, setAuthor] = useState('')
+
+    useEffect(() => {
+      fetch("https://type.fit/api/quotes")
+      .then(function(response) {
+        return response.json();
+      })
+      .then((data) => {
+        setQuote(data[randomIndex].text)
+        setAuthor(data[randomIndex].author)
+      })
+
+    }, []);
+  
     // To filter the todo list
     const [tab, setTab] = useState('WORK');
 
     return (
         <div className="App">
           <div className="MainBox">
-            <h1 className="MainTitle">Work/Life Balance Inducing To-Do List</h1>
+
+            <h1 className="MainTitle">"{quote}" by {author}</h1>
+
+            <div className="flex-container">
+            <div className="flex-child magenta">
             <div className="Box">
                 <h3 className="SubTitle">Create a New Task</h3>
                 <form onSubmit={handleTodoSubmit}>
@@ -93,9 +115,7 @@ const Dashboard = (props: Props) => {
                         Submit
                     </button>
                 </form>
-            </div>
-            <div className="TabBox">
-                <h3 className="SubTitle">My To-Do List</h3>
+                <h3 className="SubTitle">Task List</h3>
                 <div className="tab">
                     {todoCategories.map(({ value, displayText }) => (
                         <button 
