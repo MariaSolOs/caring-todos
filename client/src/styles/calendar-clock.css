@@ -1,0 +1,23 @@
+.app-container {
+    display: flex;
+}
+
+.calendar {
+    width: 20vw;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .react-datepicker {
+    pointer-events: none;
+    margin-bottom: 10px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: bold;
+}
+
+.calendar .react-datepicker__header {
+    background-color: #f8f878;
+}

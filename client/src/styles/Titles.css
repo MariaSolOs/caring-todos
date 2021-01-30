@@ -1,21 +1,22 @@
-.MainTitle{
-    font-size: 25px;
+.MainTitle {
+    font-size: 40px;
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
+    color: #FFF;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(252, 248, 11);
 }
 
-.SubTitle{
-    font-size: 13px;
+.SubTitle {
+    font-size: 18px;
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
 }
 
 .Paragraph{
     font-size: 12px;
+    font-weight: bold;
     text-align: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 1%;
 }
 

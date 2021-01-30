@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from '@apollo/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './styles/index.css';
 
 const link = createHttpLink({
     uri: process.env.REACT_APP_SERVER_URL

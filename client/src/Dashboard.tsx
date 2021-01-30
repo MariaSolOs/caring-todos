@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Todo } from './models'; 
 
-import './styles/Titles.css'
-import './styles/Boxes.css'
-import './styles/Buttons.css'
-import './styles/Tabs.css'
+import Calendar from 'react-datepicker';
+import Clock from 'react-clock';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-clock/dist/Clock.css';
+
+import './styles/Titles.css';
+import './styles/Boxes.css';
+import './styles/Buttons.css';
+import './styles/Tabs.css';
+import './styles/calendar-clock.css';
 
 const CREATE_TODO = gql`
     mutation CreateTodo($userEmail: String!, $title: String!, $description: String, $category: String) {
@@ -32,6 +38,9 @@ const todoCategories = [
     { value: 'SELF-CARE', displayText: 'Self-care' }
 ];
 
+const randomFactor = Math.random();
+const randomIndex = Math.floor(1643*randomFactor);
+
 const Dashboard = (props: Props) => {
     // Fields for creating todo
     const [title, setTitle] = useState('');
@@ -50,9 +59,6 @@ const Dashboard = (props: Props) => {
             variables: { userEmail: props.email, title, description, category } 
         });
     }
-
-    const randomFactor = Math.random();
-    const randomIndex = Math.floor(1643*randomFactor);
 
     const [quote, setQuote] = useState('')
     const [author, setAuthor] = useState('')
@@ -73,7 +79,16 @@ const Dashboard = (props: Props) => {
     const [tab, setTab] = useState('WORK');
 
     return (
-        <div className="App">
+        <div className="app-container">
+            <div className="calendar">
+                <Calendar
+                readOnly
+                inline
+                disabled
+                onChange={() => {}}
+                selected={new Date()}/>
+                <Clock value={new Date()}/>
+            </div>
           <div className="MainBox">
 
             <h1 className="MainTitle">"{quote}" by {author}</h1>
@@ -145,6 +160,8 @@ const Dashboard = (props: Props) => {
                   </div> */}
                 </div>
             </div>
+        </div>
+        </div>
         </div>
         </div>
   );

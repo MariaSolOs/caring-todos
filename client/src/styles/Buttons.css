@@ -2,11 +2,9 @@
     background-color: #d9f196c2; 
     color: black;
     text-align: center;
-
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: bold;
     font-size: 12px;
-    text-align: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-
     border-radius: 5px black;
 }
 
@@ -17,7 +15,6 @@
 .TextBox{
     font-size: 12px;
     text-align: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 1%;
     margin-left: 5pt;
     margin-right: 5pt;
