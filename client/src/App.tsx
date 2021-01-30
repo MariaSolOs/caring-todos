@@ -6,16 +6,27 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 
 const App = () => {
-    // Todos from logged in user
+    // Logged in user
+    const [email, setEmail] = useState('');
+
+    // Todo list management
     const [todos, setTodos] = useState<Todo[]>([]);
+    const handleAddTodo = (newTodo: Todo) => {
+        setTodos((todos) => [...todos, newTodo]);
+    } 
 
     return (
         <Switch>
             <Route path="/dashboard">
-                <Dashboard/>
+                <Dashboard 
+                email={email}
+                todos={todos}
+                onAddTodo={handleAddTodo}/>
             </Route>
             <Route path="/">
-                <Login setTodos={(todos) => setTodos(todos)}/>
+                <Login 
+                setEmail={(email: string) => setEmail(email)}
+                setTodos={(todos) => setTodos(todos)}/>
             </Route>
         </Switch>
     );

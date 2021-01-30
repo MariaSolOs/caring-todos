@@ -1,21 +1,50 @@
 import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
+import { Todo } from './models'; 
+
 import './styles/Titles.css'
 import './styles/Boxes.css'
 import './styles/Buttons.css'
 import './styles/Tabs.css'
 
-const Dashboard = () => {
+const CREATE_TODO = gql`
+    mutation CreateTodo($userEmail: String!, $title: String!, $description: String, $category: String) {
+        createTodo(userEmail: $userEmail, title: $title, description: $description, category: $category) {
+            _id
+            title
+            description
+            category
+            completed
+        }
+    }
+`;
+
+type Props = {
+    email: string;
+    todos: Todo[];
+    onAddTodo: (todo: Todo) => void;
+}
+
+const Dashboard = (props: Props) => {
     // Fields for creating todo
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
 
+    const [createTodo, _] = useMutation(CREATE_TODO, {
+        onCompleted: ({ createTodo }) => {
+            props.onAddTodo(createTodo);
+        }
+    });
+
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        console.log(title, description, category);
-        // Maria sends todo info to server
+        createTodo({ 
+            variables: { userEmail: props.email, title, description, category } 
+        });
     }
+
+    console.log(props.todos)
 
     return (
         <div className="App">
@@ -63,16 +92,22 @@ const Dashboard = () => {
                   <button className="tablinks" >Self-care</button>
                 </div>
                 <div className="TaskBox">
-                  <div className="Task">
+                    {props.todos.map((todo) => (
+                        <div key={todo._id} className="Task">
+                            <input type="checkbox"/>
+                            <span className="Paragraph">{todo.title} - {todo.description}</span>
+                        </div>
+                    ))}
+                  {/* <div className="Task">
                     <input type="checkbox" id="task1" name="task1" value="Task 1"></input>
                     <label htmlFor="task1" className="Paragraph"> Task 1</label>
                   </div>
                   <div className="Task">
                     <input type="checkbox" id="task2" name="task2" value="Task 2"></input>
                     <label htmlFor="task2" className="Paragraph"> Task 2</label>
-                  </div>
+                  </div> */}
                 </div>
-                </div>
+            </div>
         </div>
         </div>
   );

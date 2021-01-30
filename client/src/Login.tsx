@@ -23,6 +23,7 @@ const LOGIN_USER = gql`
 `;
 
 type Props = {
+    setEmail: (email: string) => void;
     setTodos: (todo: Todo[]) => void;
 }
 
@@ -32,8 +33,8 @@ const Login = (props: Props) => {
 
     const [login, { loading, error }] = useMutation(LOGIN_USER, {
         onCompleted: ({ login }) => {
-            console.log(login);
             props.setTodos(login.todos);
+            props.setEmail(email);
             history.push('/dashboard');
         }
     });

@@ -1,4 +1,5 @@
 const { MongoDataSource } = require('apollo-datasource-mongodb');
+const { ObjectID } = require('mongodb');
 
 exports.Users = class extends MongoDataSource {
     async findOrCreateUser(email) {
@@ -12,6 +13,13 @@ exports.Users = class extends MongoDataSource {
 
         return user;
     }
+
+    addTodo(userEmail, todoId) {
+        return this.collection.updateOne(
+            { email: userEmail },
+            { $push: { todos: todoId } }
+        );
+    }
 }
 
 exports.Todos = class extends MongoDataSource {
@@ -19,13 +27,14 @@ exports.Todos = class extends MongoDataSource {
         return this.findManyByIds(ids);
     }
 
-    createTodo(title, description, category) {
-        return this.collection.insertOne({
+    async createTodo(title, description, category) {
+        const { insertedId } = await this.collection.insertOne({
             title, 
             description, 
             category,
             completed: false
         });
+        return this.findOneById(ObjectID(insertedId));
     }
 
     setTodoCompleted(id) {

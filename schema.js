@@ -7,7 +7,7 @@ const { gql } = require('apollo-server-express');
 
     type Mutation {
         login(email: String!): User!
-        createTodo(title: String!, description: String, category: String): Todo!
+        createTodo(userEmail: String!, title: String!, description: String, category: String): Todo!
         setTodoCompleted(todoID: ID!): Todo!
     }
 

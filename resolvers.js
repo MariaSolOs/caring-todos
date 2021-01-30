@@ -10,8 +10,10 @@ module.exports = {
             return dataSources.userAPI.findOrCreateUser(email);
         },
 
-        createTodo: (_, { title, description, category }, { dataSources }) => {
-            return dataSources.todosAPI.createTodo(title, description, category);
+        createTodo: async (_, { userEmail, title, description, category }, { dataSources }) => {
+            const todo = await dataSources.todosAPI.createTodo(title, description, category);
+            await dataSources.userAPI.addTodo(userEmail, todo._id);
+            return todo;
         },
 
         setTodoCompleted: (_, { todoID }, { dataSources }) => {
