@@ -7,10 +7,31 @@
     text-shadow: 1px 1px 2px rgb(252, 248, 11);
 }
 
+.RecipeTitle {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(252, 248, 11);
+}
+
 .SubTitle {
     font-size: 18px;
     text-align: center;
     font-weight: bold;
+}
+
+.SmallTitle {
+    font-size: 14px;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.SmallTitleCentered {
+    font-size: 14px;
+    text-align: center;
+    text-decoration: underline;
 }
 
 .Paragraph{
