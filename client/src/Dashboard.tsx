@@ -147,6 +147,8 @@ const Dashboard = (props: Props) => {
             </div>
         </div>
         </div>
+        </div>
+        </div>
   );
 }
 
