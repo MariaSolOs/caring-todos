@@ -2,12 +2,13 @@ const { gql } = require('apollo-server-express');
 
  module.exports = gql`
     type Query {
-        todos(userId: ID!): [Todo]
+        todos(email: String!): [Todo]
     }
 
     type Mutation {
-        createTodo(title: String!, description: String, category: String): Todo!
-        updateTodo(todoID: ID!): Todo!
+        login(email: String!): User!
+        createTodo(userEmail: String!, title: String!, description: String, category: String): Todo!
+        setTodoCompleted(todoID: ID!): Todo!
     }
 
     type Todo {
@@ -19,7 +20,6 @@ const { gql } = require('apollo-server-express');
     }
 
     type User {
-        _id: ID!
         email: String!
         todos: [Todo!]
     }

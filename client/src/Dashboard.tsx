@@ -1,20 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { gql, useMutation } from '@apollo/client';
+import { Todo } from './models'; 
+
 import './styles/Titles.css'
 import './styles/Boxes.css'
 import './styles/Buttons.css'
 import './styles/Tabs.css'
 
-const Dashboard = () => {
+const CREATE_TODO = gql`
+    mutation CreateTodo($userEmail: String!, $title: String!, $description: String, $category: String) {
+        createTodo(userEmail: $userEmail, title: $title, description: $description, category: $category) {
+            _id
+            title
+            description
+            category
+            completed
+        }
+    }
+`;
+
+type Props = {
+    email: string;
+    allTodos: Todo[];
+    onAddTodo: (todo: Todo) => void;
+}
+
+const todoCategories = [
+    { value: 'WORK', displayText: 'Work' },
+    { value: 'SCHOOL', displayText: 'School' },
+    { value: 'FAM-FRIENDS', displayText: 'Family and Friends' },
+    { value: 'SELF-CARE', displayText: 'Self-care' }
+];
+
+const Dashboard = (props: Props) => {
     // Fields for creating todo
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
 
+    const [createTodo, _] = useMutation(CREATE_TODO, {
+        onCompleted: ({ createTodo }) => {
+            props.onAddTodo(createTodo);
+        }
+    });
+
     const handleTodoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        console.log(title, description, category);
-        // Maria sends todo info to server
+        createTodo({ 
+            variables: { userEmail: props.email, title, description, category } 
+        });
     }
 
     const randomFactor = Math.random();
@@ -34,7 +68,10 @@ const Dashboard = () => {
       })
 
     }, []);
-    
+  
+    // To filter the todo list
+    const [tab, setTab] = useState('WORK');
+
     return (
         <div className="App">
           <div className="MainBox">
@@ -66,10 +103,13 @@ const Dashboard = () => {
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
-                        <option value="WORK">Work</option>
-                        <option value="SCHOOL">School</option>
-                        <option value="FAM-FRIENDS">Family and Friends</option>
-                        <option value="SELF-CARE">Self-care</option>
+                        {todoCategories.map(({ value, displayText }) => (
+                            <option 
+                            key={value} 
+                            value={value}>
+                                {displayText}
+                            </option>
+                        ))}
                     </select>
                     <button type="submit" className="Button">
                         Submit
@@ -77,43 +117,35 @@ const Dashboard = () => {
                 </form>
                 <h3 className="SubTitle">Task List</h3>
                 <div className="tab">
-                  <button className="tablinks" >Work</button>
-                  <button className="tablinks" >School</button>
-                  <button className="tablinks" >Family and Friends</button>
-                  <button className="tablinks" >Self-care</button>
+                    {todoCategories.map(({ value, displayText }) => (
+                        <button 
+                        key={value} 
+                        className="tablinks"
+                        onClick={() => setTab(value)}>
+                            {displayText}
+                        </button>
+                    ))}
                 </div>
                 <div className="TaskBox">
-                  <div className="Task">
+                    {props.allTodos.filter(({ category }) => category === tab).map((todo) => (
+                        <div key={todo._id} className="Task">
+                            <input type="checkbox"/>
+                            <span className="Paragraph">
+                                {todo.title}: {todo.description}
+                            </span>
+                        </div>
+                    ))}
+                  {/* <div className="Task">
                     <input type="checkbox" id="task1" name="task1" value="Task 1"></input>
                     <label htmlFor="task1" className="Paragraph"> Task 1</label>
                   </div>
                   <div className="Task">
                     <input type="checkbox" id="task2" name="task2" value="Task 2"></input>
                     <label htmlFor="task2" className="Paragraph"> Task 2</label>
-                  </div>
-                  <div className="Task">
-                    <input type="checkbox" id="task3" name="task3" value="Task 3"></input>
-                    <label htmlFor="task3" className="Paragraph"> Task 3</label>
-                  </div>
-                  <div className="Task">
-                    <input type="checkbox" id="task4" name="task4" value="Task 4"></input>
-                    <label htmlFor="task4" className="Paragraph"> Task 4</label>
-                  </div>
-                </div>
+                  </div> */}
                 </div>
             </div>
-            <div className="flex-child green">
-                <div className="Box">
-                  <div className="SubBox">
-                    <h3 className="SubTitle"> Clock </h3>
-                  </div>
-                  <div className="SubBox">
-                    <h3 className="SubTitle"> Calendar </h3>
-                  </div>
-                </div>
-                </div>
-            </div>
-            </div>
+        </div>
         </div>
   );
 }
