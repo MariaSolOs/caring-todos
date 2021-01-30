@@ -20,7 +20,10 @@ const Dashboard = () => {
     return (
         <div className="App">
           <div className="MainBox">
-            <h1 className="MainTitle">Work/Life Balance Inducing To-Do List</h1>
+            <h1 className="MainTitle">Dashboard</h1>
+
+            <div className="flex-container">
+            <div className="flex-child magenta">
             <div className="Box">
                 <h3 className="SubTitle">Create a New Task</h3>
                 <form onSubmit={handleTodoSubmit}>
@@ -53,9 +56,7 @@ const Dashboard = () => {
                         Submit
                     </button>
                 </form>
-            </div>
-            <div className="TabBox">
-                <h3 className="SubTitle">My To-Do List</h3>
+                <h3 className="SubTitle">Task List</h3>
                 <div className="tab">
                   <button className="tablinks" >Work</button>
                   <button className="tablinks" >School</button>
@@ -71,9 +72,32 @@ const Dashboard = () => {
                     <input type="checkbox" id="task2" name="task2" value="Task 2"></input>
                     <label htmlFor="task2" className="Paragraph"> Task 2</label>
                   </div>
+                  <div className="Task">
+                    <input type="checkbox" id="task3" name="task3" value="Task 3"></input>
+                    <label htmlFor="task3" className="Paragraph"> Task 3</label>
+                  </div>
+                  <div className="Task">
+                    <input type="checkbox" id="task4" name="task4" value="Task 4"></input>
+                    <label htmlFor="task4" className="Paragraph"> Task 4</label>
+                  </div>
                 </div>
                 </div>
-        </div>
+            </div>
+            <div className="flex-child green">
+                <div className="Box">
+                  <div className="SubBox">
+                    <h3 className="SubTitle"> Clock </h3>
+                  </div>
+                  <div className="SubBox">
+                    <h3 className="SubTitle"> Calendar </h3>
+                  </div>
+                  <div className="SubBox">
+                    <h3 className="SubTitle"> Message </h3>
+                  </div>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
   );
 }
