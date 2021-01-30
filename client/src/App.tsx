@@ -39,10 +39,10 @@ function App() {
                     name="category"
                     value={category}
                     onChange={e => setCategory(e.target.value)}>
-                        <option value="work">Work</option>
-                        <option value="school">School</option>
-                        <option value="fam-friends">Family and friends</option>
-                        <option value="self-care">Self-care</option>
+                        <option value="WORK">Work</option>
+                        <option value="SCHOOL">School</option>
+                        <option value="FAM-FRIENDS">Family and friends</option>
+                        <option value="SELF-CARE">Self-care</option>
                     </select>
                     <button type="submit">
                         Create todo
