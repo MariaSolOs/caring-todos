@@ -37,10 +37,11 @@ exports.Todos = class extends MongoDataSource {
         return this.findOneById(ObjectID(insertedId));
     }
 
-    setTodoCompleted(id) {
-        return this.collection.updateOne(
+    async toggleTodo(id, completed) {
+        await this.collection.updateOne(
             { _id: ObjectID(id) },
-            { $set: { completed: true } }
+            { $set: { completed } }
         );
+        return this.findOneById(ObjectID(id));
     }
 }

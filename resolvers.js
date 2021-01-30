@@ -16,8 +16,8 @@ module.exports = {
             return todo;
         },
 
-        setTodoCompleted: (_, { todoID }, { dataSources }) => {
-            return dataSources.todosAPI.setTodoCompleted(todoID);
+        toggleTodo: (_, { todoId, completed }, { dataSources }) => {
+            return dataSources.todosAPI.toggleTodo(todoId, completed);
         }
     }
 }
