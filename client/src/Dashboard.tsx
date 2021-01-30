@@ -180,7 +180,7 @@ const Dashboard = (props: Props) => {
                 </div>
             </div>
             <div className="RecipeBox">
-                <h3 className="SubTitle"> Try one of these recipes! </h3>
+                <h3 className="SubTitle"> Try a new recipe! </h3>
             </div>
         </div>
         </div>

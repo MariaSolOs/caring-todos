@@ -51,8 +51,8 @@ const Login = (props: Props) => {
                 Something went wrong!
             </p> :
             <form className="MainBox" onSubmit={handleLogin}>
-                <h1 className="MainTitle">Dashboard</h1>
-                <div className="Box">
+                <h1 className="MainTitle">The Caring Task List</h1>
+                <div className="LoginBox">
                     <label className="SubTitle">Email</label>
                     <input className="TextBox"
                         id="email"
