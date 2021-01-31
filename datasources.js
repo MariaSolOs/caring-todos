@@ -24,7 +24,7 @@ exports.Users = class extends MongoDataSource {
 
 exports.Todos = class extends MongoDataSource {
     getTodosFromUser(ids) {
-        return this.findManyByIds(ids);
+        return ids? this.findManyByIds(ids) : [];
     }
 
     async createTodo(title, description, category) {
