@@ -6,7 +6,6 @@
     border-radius: 5px;
     padding: 1%;
     width: 90%;
-    height: 400pt;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -38,11 +37,15 @@
     padding: 1%;
     width: 90%;
     height: 250pt;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    vertical-align: center;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+.RecipeBox .Paragraph {
+    margin: 0;
+    padding: 0;
+}
+.RecipeBox .SmallTitle {
+    margin: 0 0 5px;
 }
 
 .SubBox{
@@ -77,7 +80,7 @@
 .MainBox{
     margin: auto;
     border: none;
-    padding: 5%;
+    padding: 0 5%;
     width: 85vw;
 }
 
@@ -90,7 +93,6 @@
     background-color: #27ece327;
     text-align: left;
     width: 250pt;
-    height: 230pt;
 }
 
 .Task{

@@ -5,6 +5,13 @@ module.exports = {
         }
     },
 
+    Query: {
+        recipe: async (_, __, { dataSources }) => {
+            const recipe = await dataSources.recipeAPI.getRecipe();
+            return recipe;
+        }
+    },
+
     Mutation: {
         login: (_, { email }, { dataSources }) => {
             return dataSources.userAPI.findOrCreateUser(email);

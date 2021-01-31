@@ -5,7 +5,7 @@ const { ApolloServer } = require('apollo-server-express'),
        typeDefs = require('./schema'),
        resolvers = require('./resolvers'),
        mongoClient = require('./config/mongoDB'),
-      { Users, Todos } = require('./datasources'),
+      { Users, Todos, Recipes } = require('./datasources'),
        express = require('express'),
        path = require('path'),
        cors = require('cors');
@@ -23,6 +23,7 @@ const server = new ApolloServer({
     dataSources: () => ({
         userAPI: new Users(mongoClient.db().collection('users')),
         todosAPI: new Todos(mongoClient.db().collection('todos')),
+        recipeAPI: new Recipes(mongoClient.db().collection('recipes'))
     })
 });
 server.applyMiddleware({ app, path: '/server' });

@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
  module.exports = gql`
     type Query {
-        todos(email: String!): [Todo]
+        recipe: Recipe!
     }
 
     type Mutation {
@@ -22,5 +22,11 @@ const { gql } = require('apollo-server-express');
     type User {
         email: String!
         todos: [Todo!]
+    }
+
+    type Recipe {
+        title: String!
+        ingredients: [String]
+        steps: [String]
     }
  `;

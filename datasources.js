@@ -45,3 +45,10 @@ exports.Todos = class extends MongoDataSource {
         return this.findOneById(ObjectID(id));
     }
 }
+
+exports.Recipes = class extends MongoDataSource {
+    async getRecipe() {
+        const recipes = await this.collection.find({}).toArray();
+        return recipes[Math.floor(Math.random() * 3)];
+    }
+}

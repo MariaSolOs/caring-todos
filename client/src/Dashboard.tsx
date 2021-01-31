@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { Todo } from './models'; 
 
 import Calendar from 'react-datepicker';
@@ -12,6 +12,16 @@ import './styles/Boxes.css';
 import './styles/Buttons.css';
 import './styles/Tabs.css';
 import './styles/calendar-clock.css';
+
+const FETCH_RECIPE = gql`
+    query GetRecipe {
+        recipe {
+            title
+            ingredients
+            steps
+        }
+    }
+`;
 
 const CREATE_TODO = gql`
     mutation CreateTodo($userEmail: String!, $title: String!, $description: String, $category: String) {
@@ -93,11 +103,15 @@ const Dashboard = (props: Props) => {
         setAuthor(data[randomIndex].author || 'Anonymous')
       })
     }, []);
-  
+
+    // Fetch random recipe
+    const { data: recipeData, loading: recipeLoad, error: recipeErr } = 
+        useQuery(FETCH_RECIPE);
+
     // To filter the todo list
     const [tab, setTab] = useState('WORK');
 
-    var recipeIndex = Math.floor(Math.random()*5);
+    console.log(recipeData)
 
     return (
         <div className="app-container">
@@ -181,16 +195,24 @@ const Dashboard = (props: Props) => {
                     ))}
                 </div>
             </div>
+            {(recipeData && !recipeErr && !recipeLoad) &&
             <div className="RecipeBox">
-                <h3 className="SubTitle"> Try a new recipe! </h3>
-                <div>
-                    <h2 className="RecipeTitle">Insert recipe title here</h2>
-                    <h4 className="SmallTitle">Ingredients: </h4>
-                    <p className="Paragraph">insert ingredients here probably as list</p>
-                    <h4 className="SmallTitle">Steps: </h4>
-                    <p className="Paragraph">insert steps here probably as list</p>
-                </div>
+                <h2 className="RecipeTitle">{recipeData.recipe.title}</h2>
+                <div style={{ display: 'flex' }}>
+                <ul>
+                <h4 className="SmallTitle">Ingredients: </h4>
+                    {recipeData.recipe.ingredients.map((ingred: string, i: number) => (
+                        <li key={i} className="Paragraph">{ingred}</li>
+                    ))}
+                </ul>
+                <ul>
+                <h4 className="SmallTitle">Steps: </h4>
+                    {recipeData.recipe.steps.map((step: string, i: number) => (
+                        <li key={i} className="Paragraph">{step}</li>
+                    ))}
+                </ul>
             </div>
+            </div>}
         </div>
         </div>
         </div>
